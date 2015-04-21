@@ -77,13 +77,15 @@ Open a command prompt and ask for help:
 
 If your system is set up to compile Qt applications, building CutyCapt should be a simple matter of checking out the source code and running qmake and your version of make. As an example, if you are running Ubuntu Hardy Heron and have configured the system to use packages from hardy-backports, the following should do:
 
+```
   % sudo apt-get install subversion libqt4-webkit libqt4-dev g++
   % svn co svn://svn.code.sf.net/p/cutycapt/code/ cutycapt
   % cd cutycapt/CutyCapt
   % qmake
   % make
   % ./CutyCapt --url=http://www.example.org --out=example.png
-  
+```
+
 ## Using CutyCapt without X server
 
 You cannot use CutyCapt without an X server, but you can use e.g. Xvfb as light-weight server if you are not running an interactive graphical desktop environment. For example, you could use:
