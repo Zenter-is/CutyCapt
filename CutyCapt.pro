@@ -1,6 +1,6 @@
 QT       +=  webkit svg network
-SOURCES   =  CutyCapt.cpp
-HEADERS   =  CutyCapt.hpp
+SOURCES   =  src/CutyCapt.cpp
+HEADERS   =  src/CutyCapt.hpp
 CONFIG   +=  qt console
 
 DESTDIR         = build/release
