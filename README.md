@@ -63,6 +63,8 @@ Open a command prompt and ask for help:
   --zoom-factor=<float>          Page zoom factor (default: no zooming)       
   --zoom-text-only=<on|off>      Whether to zoom only the text (default: off) 
   --http-proxy=<url>             Address for HTTP proxy server (default: none)
+  --smooth                       Attempt to enable Qt's high-quality settings.
+  --insecure                     Ignore SSL/TLS certificate errors            
  -----------------------------------------------------------------------------
   <f> is svg,ps,pdf,itext,html,rtree,png,jpeg,mng,tiff,gif,bmp,ppm,xbm,xpm    
  -----------------------------------------------------------------------------
@@ -74,12 +76,12 @@ Open a command prompt and ask for help:
 If your system is set up to compile Qt applications, building CutyCapt should be a simple matter of checking out the source code and running qmake and your version of make. As an example, if you are running Ubuntu Hardy Heron and have configured the system to use packages from hardy-backports, the following should do:
 
 ```
-  % sudo apt-get install subversion libqt4-webkit libqt4-dev g++
-  % svn co svn://svn.code.sf.net/p/cutycapt/code/ cutycapt
-  % cd cutycapt/CutyCapt
+  % sudo apt-get install git g++ qt5-default libqt5svg5-dev libqt5webkit5-dev
+  % git clone https://github.com/Zenter-is/CutyCapt.git
+  % cd CutyCapt
   % qmake
-  % make
-  % ./CutyCapt --url=http://www.example.org --out=example.png
+  % make && sudo make install
+  % cutycapt --url=http://www.example.org --out=example.png
 ```
 
 ## Using CutyCapt without X server
@@ -88,7 +90,7 @@ You cannot use CutyCapt without an X server, but you can use e.g. Xvfb as light-
 
 
 ```
-  % xvfb-run --server-args="-screen 0, 1024x768x24" ./CutyCapt --url=... --out=...
+  % xvfb-run --server-args="-screen 0, 1024x768x24" cutycapt --url=... --out=...
 ```
   
 ##Author
