@@ -12,6 +12,12 @@ MOC_DIR         = $$DESTDIR/.moc
 
 TARGET          = cutycapt
 
+unix{
+    target.path = /usr/local/bin/
+    target.files = build/release/cutycapt
+    INSTALLS += target
+}
+
 greaterThan(QT_MAJOR_VERSION, 4): {
   QT       +=  webkitwidgets
 }
