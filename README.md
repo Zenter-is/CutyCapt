@@ -26,10 +26,6 @@ Help wanted! Previously I have used MinGW to make a static Qt build and correspo
 - [CutyCapt-Win32-2010-04-26.zip (7MB, .exe for Win32 systems)](http://downloads.sourceforge.net/cutycapt/CutyCapt-Win32-2010-04-26.zip)
 - *[CutyCapt-Win32-2008-06-11.zip (6MB, .exe for Win32 systems)](http://downloads.sourceforge.net/cutycapt/CutyCapt-Win32-2008-06-11.zip)*
 
-## Source code
-
-The [source code is available in the SVN repositorty](http://sourceforge.net/p/cutycapt/code/HEAD/tree/CutyCapt/) ([download tarball](http://sourceforge.net/p/cutycapt/code/HEAD/tarball?path=/CutyCapt)).
-
 ## Usage
 
 Open a command prompt and ask for help:
@@ -90,9 +86,11 @@ If your system is set up to compile Qt applications, building CutyCapt should be
 
 You cannot use CutyCapt without an X server, but you can use e.g. Xvfb as light-weight server if you are not running an interactive graphical desktop environment. For example, you could use:
 
+
 ```
   % xvfb-run --server-args="-screen 0, 1024x768x24" ./CutyCapt --url=... --out=...
 ```
   
 ##Author
+
 [Björn Höhrmann](http://bjoern.hoehrmann.de) [bjoern@hoehrmann.de](mailto:bjoern@hoehrmann.de) ([Donate via SourceForge](http://sourceforge.net/donate/index.php?user_id=188003), [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&amp;business=bjoern@hoehrmann.de&amp;item_name=Support+Bjoern+Hoehrmann))
