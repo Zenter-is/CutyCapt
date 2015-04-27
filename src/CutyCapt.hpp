@@ -51,12 +51,13 @@ public:
 private slots:
   void DocumentComplete(bool ok);
   void InitialLayoutCompleted();
-  void JavaScriptWindowObjectCleared();
+  void ExecuteInjectedJavascript();
   void Timeout();
   void Delayed();
   void handleSslErrors(QNetworkReply* reply, QList<QSslError> errors);
 
 private:
+  void RenderPreProcessing();
   void TryDelayedRender();
   void saveSnapshot();
   bool mSawInitialLayout;

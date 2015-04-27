@@ -38,7 +38,7 @@
 #include <QNetworkProxy>
 #include "CutyCapt.hpp"
 
-#if QT_VERSION >= 0x040600 && 0
+#if QT_VERSION >= 0x040600
 #define CUTYCAPT_SCRIPT 1
 #endif
 
@@ -185,7 +185,7 @@ CutyCapt::InitialLayoutCompleted() {
   mSawInitialLayout = true;
 
   if (mSawInitialLayout && mSawDocumentComplete)
-    TryDelayedRender();
+    RenderPreProcessing();
 }
 
 void
@@ -193,11 +193,22 @@ CutyCapt::DocumentComplete(bool /*ok*/) {
   mSawDocumentComplete = true;
 
   if (mSawInitialLayout && mSawDocumentComplete)
-    TryDelayedRender();
+    RenderPreProcessing();
 }
 
 void
-CutyCapt::JavaScriptWindowObjectCleared() {
+CutyCapt::RenderPreProcessing()
+{
+
+#if CUTYCAPT_SCRIPT
+  ExecuteInjectedJavascript();
+#endif
+
+  TryDelayedRender();
+}
+
+void
+CutyCapt::ExecuteInjectedJavascript() {
 
   if (!mScriptProp.isEmpty()) {
     QVariant var = mPage->mainFrame()->evaluateJavaScript(mScriptProp);
@@ -382,13 +393,13 @@ CaptHelp(void) {
     " -----------------------------------------------------------------------------\n"
 #if CUTYCAPT_SCRIPT
     " The `inject-script` option can be used to inject script code into loaded web \n"
-    " pages. The code is called whenever the `javaScriptWindowObjectCleared` signal\n"
-    " is received. When `script-object` is set, an object under the specified name \n"
-    " will be available to the script to maintain state across page loads. When the\n"
-    " `expect-alert` option is specified, the shot will be taken when a script in- \n"
-    " vokes alert(string) with the string if that happens before `max-wait`. These \n"
-    " options effectively allow you to remote control the browser and the web page.\n"
-    " This an experimental and easily abused and misused feature. Use with caution.\n"
+    " pages. The code is called when the document has been loaded. When `script-   \n"
+    " object` is set, an object under the specified name will be available to the  \n"
+    " script to maintain state across page loads. When the `expect-alert` option is\n"
+    " specified, the shot will be taken when a script invokes alert(string) with   \n"
+    " the string if that happens before `max-wait`. These options effectively allow\n" 
+    " you to remote control the browser and the web page. This an experimental and \n"
+    " easily abused and misused feature. Use with caution.                         \n"
     " -----------------------------------------------------------------------------\n"
 #endif
     " http://cutycapt.sf.net - (c) 2003-2013 Bjoern Hoehrmann - bjoern@hoehrmann.de\n"
@@ -694,16 +705,6 @@ main(int argc, char *argv[]) {
   page.mainFrame()->setScrollBarPolicy(Qt::Vertical, Qt::ScrollBarAlwaysOff);
   page.setViewportSize( QSize(argMinWidth, argMinHeight) );
 
-#if CUTYCAPT_SCRIPT
-  // javaScriptWindowObjectCleared does not get called on the
-  // initial load unless some JavaScript has been executed.
-  page.mainFrame()->evaluateJavaScript(QString(""));
-
-  app.connect(page.mainFrame(),
-    SIGNAL(javaScriptWindowObjectCleared()),
-    &main,
-    SLOT(JavaScriptWindowObjectCleared()));
-#endif
 
   app.connect(page.networkAccessManager(),
     SIGNAL(sslErrors(QNetworkReply*, QList<QSslError>)),
