@@ -31,7 +31,8 @@ Help wanted! Previously I have used MinGW to make a static Qt build and correspo
 Open a command prompt and ask for help:
 
 ```
- % CutyCapt --help
+ CutyCapt --help
+
  -----------------------------------------------------------------------------
  Usage: CutyCapt --url=http://www.example.org/ --out=localfile.png            
  -----------------------------------------------------------------------------
@@ -76,12 +77,12 @@ Open a command prompt and ask for help:
 If your system is set up to compile Qt applications, building CutyCapt should be a simple matter of checking out the source code and running qmake and your version of make. As an example, if you are running Ubuntu Hardy Heron and have configured the system to use packages from hardy-backports, the following should do:
 
 ```
-  % sudo apt-get install git g++ qt5-default libqt5svg5-dev libqt5webkit5-dev
-  % git clone https://github.com/Zenter-is/CutyCapt.git
-  % cd CutyCapt
-  % qmake
-  % make && sudo make install
-  % cutycapt --url=http://www.example.org --out=example.png
+sudo apt-get install git g++ qt5-default libqt5svg5-dev libqt5webkit5-dev
+git clone https://github.com/Zenter-is/CutyCapt.git
+cd CutyCapt
+qmake
+make && sudo make install
+cutycapt --url=http://www.example.org --out=example.png
 ```
 
 ## Using CutyCapt without X server
@@ -90,9 +91,14 @@ You cannot use CutyCapt without an X server, but you can use e.g. Xvfb as light-
 
 
 ```
-  % xvfb-run --server-args="-screen 0, 1024x768x24" cutycapt --url=... --out=...
+xvfb-run --server-args="-screen 0, 1024x768x24" cutycapt --url=... --out=...
 ```
   
 ##Author
 
 [Björn Höhrmann](http://bjoern.hoehrmann.de) [bjoern@hoehrmann.de](mailto:bjoern@hoehrmann.de) ([Donate via SourceForge](http://sourceforge.net/donate/index.php?user_id=188003), [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&amp;business=bjoern@hoehrmann.de&amp;item_name=Support+Bjoern+Hoehrmann))
+
+##Contributers
+
+Björn Höhrmann &lt;bjoern@hoehrmann.de&gt;
+Andri Thorlacius &lt;andri.thorlacius@gmail.com&gt;
