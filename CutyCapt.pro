@@ -13,9 +13,9 @@ MOC_DIR         = $$DESTDIR/.moc
 TARGET          = cutycapt
 
 unix{
-    target.path = /usr/local/bin/
-    target.files = build/release/cutycapt
-    INSTALLS += target
+    target.path  = /usr/local/bin/
+    target.files =$$DESTDIR/$$TARGET
+    INSTALLS 	+= target
 }
 
 greaterThan(QT_MAJOR_VERSION, 4): {
