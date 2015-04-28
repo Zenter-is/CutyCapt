@@ -110,5 +110,5 @@ xvfb-run --server-args="-screen 0, 1024x768x24" cutycapt --url=... --out=...
 
 ##Contributers
 
-- Björn Höhrmann &lt;bjoern@hoehrmann.de&gt;
-- Andri Thorlacius &lt;andri.thorlacius@gmail.com&gt;
+- [Björn Höhrmann](https://github.com/hoehrmann) &lt;bjoern@hoehrmann.de&gt;
+- [Andri Thorlacius](https://github.com/Chipcius) &lt;andri.thorlacius@gmail.com&gt;
