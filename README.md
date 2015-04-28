@@ -17,14 +17,10 @@ CutyCapt has a number of known quirks, most of which are caused by problems with
 
 ## Requirements
 
-CutyCapt depends on Qt [4.4.0+](http://www.qtsoftware.com/).
+CutyCapt depends on Qt [5.0.0+](http://www.qtsoftware.com/).
 
 ## Download
 
-Help wanted! Previously I have used MinGW to make a static Qt build and correspondingly single-file CutyCapt executables for Windows. However, MinGW no longer supports single-file executables for threaded applications, they require to re-distribute a DLL instead, and Qt no longer supports static builds of QtWebkit. Similarily, if I just used Visual Studio 2010, as I do for normal development, proper builds would have to redistribute Microsoft runtime DLLs. Anyone who wants to prepare CutyCapt.exe + *.DLL builds is most welcome to join the project to do so, or alternatively provide them externally which I would then link from here. Let me know if you are interested. Thanks.
-
-- [CutyCapt-Win32-2010-04-26.zip (7MB, .exe for Win32 systems)](http://downloads.sourceforge.net/cutycapt/CutyCapt-Win32-2010-04-26.zip)
-- *[CutyCapt-Win32-2008-06-11.zip (6MB, .exe for Win32 systems)](http://downloads.sourceforge.net/cutycapt/CutyCapt-Win32-2008-06-11.zip)*
 
 ## Usage
 
@@ -64,17 +60,31 @@ Open a command prompt and ask for help:
   --zoom-factor=<float>          Page zoom factor (default: no zooming)       
   --zoom-text-only=<on|off>      Whether to zoom only the text (default: off) 
   --http-proxy=<url>             Address for HTTP proxy server (default: none)
+  --inject-script=<path>         JavaScript that will be injected into pages  
+  --script-object=<string>       Property to hold state for injected script   
+  --expect-alert=<string>        Try waiting for alert(string) before capture 
+  --debug-print-alerts           Prints out alert(...) strings for debugging. 
   --smooth                       Attempt to enable Qt's high-quality settings.
   --insecure                     Ignore SSL/TLS certificate errors            
  -----------------------------------------------------------------------------
   <f> is svg,ps,pdf,itext,html,rtree,png,jpeg,mng,tiff,gif,bmp,ppm,xbm,xpm    
  -----------------------------------------------------------------------------
+ The `inject-script` option can be used to inject script code into loaded web 
+ pages. The code is called whenever the `ExecuteExtrenalJavascript` signal
+ is received. When `script-object` is set, an object under the specified name 
+ will be available to the script to maintain state across page loads. When the
+ `expect-alert` option is specified, the shot will be taken when a script in- 
+ vokes alert(string) with the string if that happens before `max-wait`. These 
+ options effectively allow you to remote control the browser and the web page.
+ This an experimental and easily abused and misused feature. Use with caution.
+ -----------------------------------------------------------------------------
  http://cutycapt.sf.net - (c) 2003-2013 Bjoern Hoehrmann - bjoern@hoehrmann.de
+
  ```
  
 ## Build Instructions
 
-If your system is set up to compile Qt applications, building CutyCapt should be a simple matter of checking out the source code and running qmake and your version of make. As an example, if you are running Ubuntu Hardy Heron and have configured the system to use packages from hardy-backports, the following should do:
+If your system is set up to compile Qt applications, building CutyCapt should be a simple matter of checking out the source code and running qmake and your version of make. As an example, if you are running Ubuntu 14.04 trusty, the following should do:
 
 ```
 sudo apt-get install git g++ qt5-default libqt5svg5-dev libqt5webkit5-dev
